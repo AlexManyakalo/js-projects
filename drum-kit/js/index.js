@@ -2,22 +2,22 @@ const sounds = [
     {
         key: "l",
         name: "Afterglow",
-        path: "../assets/sounds/Afterglow - Worn Out.mp3",
+        path: "../drum-kit/assets/sounds/Afterglow - Worn Out.mp3",
     },
     {
         key: "p",
         name: "Nightmare",
-        path: "../assets/sounds/Between Home and Serenity - Nightmare.mp3",
+        path: "../drum-kit/assets/sounds/Between Home and Serenity - Nightmare.mp3",
     },
     {
         key: "m",
         name: "Capsize",
-        path: "../assets/sounds/Capsize - Smiling As I Burn.mp3",
+        path: "../drum-kit/assets/sounds/Capsize - Smiling As I Burn.mp3",
     },
     {
         key: "s",
         name: "Delirium",
-        path: "../assets/sounds/Lifespark. - Delirium.mp3",
+        path: "../drum-kit/assets/sounds/Lifespark. - Delirium.mp3",
     },
 ];
 
