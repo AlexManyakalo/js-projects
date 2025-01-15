@@ -85,9 +85,16 @@ h6 {
   width: 60px;
   border-radius: var(--border-radius);
   transition-duration: var(--transition-duration);
+
+  -webkit-user-select: none;
+  user-select: none;
 }
 
 .btn:hover {
+  scale: 1.1;
+}
+
+.btn:active {
   scale: 1.1;
 }
 
@@ -106,7 +113,7 @@ h6 {
   max-width: 700px;
   border-radius: var(--border-radius);
   background-color: var(--color-dark-base);
-  box-shadow: rgba(146, 146, 146, 0.1) 0px 4px 12px;
+  box-shadow: rgba(146, 146, 146, 0.151) 0px 4px 12px;
 }
 
 .calc__head {
@@ -130,17 +137,14 @@ h6 {
 
 .calc__head-equals {
   color: var(--color-blue-btn);
-}
 
-.calc__head-num {
+  -webkit-user-select: none;
+  user-select: none;
 }
 
 .calc__head-bottom {
   text-align: end;
   width: 100%;
-}
-
-.calc__head-output {
 }
 
 .calc__head-operation {
