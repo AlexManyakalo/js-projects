@@ -1,4 +1,6 @@
-// input/output result
+/*============== GLOBAL ===============*/
+
+// input/output of results
 let input = document.querySelector(".calc__head-input");
 let output = document.querySelector(".calc__head-num");
 
@@ -6,11 +8,14 @@ let output = document.querySelector(".calc__head-num");
 const numbersList = document.querySelector(".calc__list");
 const numbers = numbersList.querySelectorAll(".btn");
 
-// Global variables
+// variables for calculations
 let result = 0;
 let currentInput = "";
+const operations = new Set(["+", "-", "*", "/", "%"]);
+const digits = new Set(["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "."]);
 
-// Functions
+/*============== FUNCTIONS ===============*/
+
 function selectOperation(op) {
   return `<span class="calc__head-operation"> ${op} </span>`;
 }
@@ -18,13 +23,38 @@ function selectOperation(op) {
 function updateInput() {
   input.innerHTML = "";
   for (let i = 0; i < currentInput.length; i++) {
-    if (["+", "-", "*", "/", "%"].includes(currentInput[i]))
+    if (operations.has(currentInput[i]))
       input.innerHTML += selectOperation(currentInput[i]);
     else input.innerHTML += currentInput[i];
   }
 }
 
-// Events
+function deleteChar() {
+  currentInput = currentInput.slice(0, -1);
+  updateInput();
+}
+
+function checkRepeat(value) {
+  if (!(operations.has(value) && operations.has(currentInput.at(-1))))
+    currentInput += value;
+}
+
+function inputKeyboard(event) {
+  const value = event.key;
+  if (digits.has(value) || operations.has(value)) {
+    checkRepeat(value);
+    updateInput();
+  } else if (value === "Backspace") deleteChar();
+}
+
+function calculate() {
+  let numbersArr = [];
+  let operationsArr = [];
+  for (let i = 0; i < currentInput.length; i++) {}
+}
+
+/*============== EVENTS ===============*/
+
 numbers.forEach((btn) => {
   btn.addEventListener("click", () => {
     const value = btn.textContent;
@@ -40,13 +70,14 @@ numbers.forEach((btn) => {
         result = 0;
         break;
       case "⇐":
-        currentInput = currentInput.slice(0, -1);
-        updateInput();
+        deleteChar();
         break;
       default:
-        currentInput += value;
+        checkRepeat(value);
         updateInput();
         break;
     }
   });
 });
+
+document.addEventListener("keydown", inputKeyboard);
