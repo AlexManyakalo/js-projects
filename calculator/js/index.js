@@ -11,7 +11,7 @@ const numbers = numbersList.querySelectorAll(".btn");
 // variables for calculations
 let result = 0;
 let currentInput = "";
-const operations = new Set(["*", "/", "%", "+", "-"]);
+const operations = new Set(["×", "÷", "%", "+", "-"]);
 const digits = new Set(["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "."]);
 
 /*============== FUNCTIONS ===============*/
@@ -52,9 +52,9 @@ function inputKeyboard(event) {
 
 function performOperation(a, b, operation) {
   switch (operation) {
-    case "*":
+    case "×":
       return a * b;
-    case "/":
+    case "÷":
       return a / b;
     case "%":
       return a * (b / 100);
@@ -89,11 +89,14 @@ function calculate() {
   for (const char of currentInput)
     if (operations.has(char)) operationsArr.push(char);
 
-  const numbersArr = currentInput.split(/[\-+*/%]/).map(Number);
+  const numbersArr = currentInput.split(/[\-+×÷%]/).map(Number);
 
-  const highOperations = new Set(["*", "/", "%"]);
+  const highOperations = new Set(["×", "÷", "%"]);
   const lowOperations = new Set(["+", "-"]);
 
+  console.log(numbersArr);
+  console.log(operationsArr);
+  
   const highResult = sortOperations(highOperations, numbersArr, operationsArr);
   const result = sortOperations(lowOperations, highResult[0], highResult[1]);
 
