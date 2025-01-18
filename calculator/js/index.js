@@ -113,8 +113,7 @@ numbers.forEach((btn) => {
         input.innerHTML = "";
         break;
       case "=":
-        result = calculate();
-        output.textContent = result;
+        output.textContent = calculate();
         result = 0;
         break;
       case "⇐":
