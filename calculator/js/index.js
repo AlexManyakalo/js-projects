@@ -1,4 +1,4 @@
-/*============== GLOBAL ===============*/
+/*============== GLOBAL VARIABLES ===============*/
 
 // input/output of results
 let input = document.querySelector(".calc__head-input");
@@ -11,7 +11,7 @@ const numbers = numbersList.querySelectorAll(".btn");
 // variables for calculations
 let result = 0;
 let currentInput = "";
-const operations = new Set(["+", "-", "*", "/", "%"]);
+const operations = new Set(["*", "/", "%", "+", "-"]);
 const digits = new Set(["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "."]);
 
 /*============== FUNCTIONS ===============*/
@@ -22,10 +22,9 @@ function selectOperation(op) {
 
 function updateInput() {
   input.innerHTML = "";
-  for (let i = 0; i < currentInput.length; i++) {
-    if (operations.has(currentInput[i]))
-      input.innerHTML += selectOperation(currentInput[i]);
-    else input.innerHTML += currentInput[i];
+  for (const char of currentInput) {
+    if (operations.has(char)) input.innerHTML += selectOperation(char);
+    else input.innerHTML += char;
   }
 }
 
@@ -34,23 +33,71 @@ function deleteChar() {
   updateInput();
 }
 
-function checkRepeat(value) {
-  if (!(operations.has(value) && operations.has(currentInput.at(-1))))
+function checkOperation(value) {
+  if (
+    !operations.has(value) ||
+    (!operations.has(currentInput.at(-1)) && currentInput) ||
+    (value === "-" && !currentInput)
+  )
     currentInput += value;
 }
 
 function inputKeyboard(event) {
   const value = event.key;
   if (digits.has(value) || operations.has(value)) {
-    checkRepeat(value);
+    checkOperation(value);
     updateInput();
   } else if (value === "Backspace") deleteChar();
 }
 
+function performOperation(a, b, operation) {
+  switch (operation) {
+    case "*":
+      return a * b;
+    case "/":
+      return a / b;
+    case "%":
+      return a * (b / 100);
+    case "-":
+      return a - b;
+    case "+":
+      return a + b;
+  }
+}
+
+function sortOperations(tierOperations, numbers, operations) {
+  for (let i = 0; i < operations.length; i++) {
+    if (tierOperations.has(operations[i])) {
+      const result = performOperation(
+        numbers[i],
+        numbers[i + 1],
+        operations[i]
+      );
+
+      numbers.splice(i, 2, result);
+      operations.splice(i, 1);
+      i--;
+    }
+  }
+  return [numbers, operations];
+}
+
 function calculate() {
-  let numbersArr = [];
+  if (operations.has(currentInput.at(-1))) return;
+
   let operationsArr = [];
-  for (let i = 0; i < currentInput.length; i++) {}
+  for (const char of currentInput)
+    if (operations.has(char)) operationsArr.push(char);
+
+  const numbersArr = currentInput.split(/[\-+*/%]/).map(Number);
+
+  const highOperations = new Set(["*", "/", "%"]);
+  const lowOperations = new Set(["+", "-"]);
+
+  const highResult = sortOperations(highOperations, numbersArr, operationsArr);
+  const result = sortOperations(lowOperations, highResult[0], highResult[1]);
+
+  return result[0][0];
 }
 
 /*============== EVENTS ===============*/
@@ -66,6 +113,7 @@ numbers.forEach((btn) => {
         input.innerHTML = "";
         break;
       case "=":
+        result = calculate();
         output.textContent = result;
         result = 0;
         break;
@@ -73,7 +121,7 @@ numbers.forEach((btn) => {
         deleteChar();
         break;
       default:
-        checkRepeat(value);
+        checkOperation(value);
         updateInput();
         break;
     }
