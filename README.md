@@ -1,4 +1,14 @@
-# js-projects
+# [Calculator v0.1](https://alexmanyakalo.github.io/js-projects/calculator)
+![image](https://github.com/user-attachments/assets/ee6d2758-0e70-47b9-91b2-2f36466cd76b)
+
+[Deploy](https://alexmanyakalo.github.io/js-projects/calculator)
+
+Технологии:
+- HTML, CSS
+- JavaScript
+- BEM
+- Prettier, ESLint
+
 ТЗ приложения
 1. Основные операции:
 - [x] Сложение ( + )
