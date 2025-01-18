@@ -89,11 +89,14 @@ function calculate() {
   for (const char of currentInput)
     if (operations.has(char)) operationsArr.push(char);
 
-  const numbersArr = currentInput.split(/[\-+*/%]/).map(Number);
+  const numbersArr = currentInput.split(/[\-+×÷%]/).map(Number);
 
   const highOperations = new Set(["×", "÷", "%"]);
   const lowOperations = new Set(["+", "-"]);
 
+  console.log(numbersArr);
+  console.log(operationsArr);
+  
   const highResult = sortOperations(highOperations, numbersArr, operationsArr);
   const result = sortOperations(lowOperations, highResult[0], highResult[1]);
 
