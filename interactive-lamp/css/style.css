@@ -1,0 +1,75 @@
+/*============== FONTS ===============*/
+
+@font-face {
+  font-family: "Kanit";
+  src: url("../assets/fonts/Kanit-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Kanit";
+  src: url("../assets/fonts/Kanit-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/*============== GLOBAL STYLES ===============*/
+
+:root {
+  --color-light-bg: #beebf3;
+  --color-dark-bg: #30333d;
+
+  --color-light-base: #ffffff;
+  --color-dark-base: #1a1a28;
+  --color-gray-base: #454545;
+
+  --color-blue-btn: #51c9dc;
+  --color-light-btn: #f2f8fd;
+  --color-dark-btn: #1e2434;
+
+  --border-radius: 10px;
+  --border: 1px solid var(--color-gray-base);
+
+  --font-family-base: "Kanit", sans-serif;
+
+  --input-height: 54px;
+
+  --container-width: 1300px;
+  --container-padding-x: 15px;
+
+  --transition-duration: 0.2s;
+}
+
+body {
+  font-family: var(--font-family-base);
+  font-weight: 400;
+  font-size: 16px;
+  color: var(--color-light-btn);
+  background-color: var(--color-dark-bg);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 700;
+}
+
+.container {
+  max-width: calc(var(--container-width) + var(--container-padding-x) * 2);
+  margin-inline: auto;
+  padding-inline: var(--container-padding-x);
+}
+
+/*============== HEADER ===============*/
+
+/*============== MAIN ===============*/
+
+/*============== FOOTER ===============*/
+
+/*============== MEDIA ===============*/
