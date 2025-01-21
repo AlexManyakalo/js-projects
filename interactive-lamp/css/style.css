@@ -1,16 +1,16 @@
 /*============== FONTS ===============*/
 
 @font-face {
-  font-family: "Kanit";
-  src: url("../assets/fonts/Kanit-Regular.woff2") format("woff2");
+  font-family: "Nunito";
+  src: url("../assets/fonts/Nunito-Regular.woff2") format("woff2");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 
 @font-face {
-  font-family: "Kanit";
-  src: url("../assets/fonts/Kanit-Bold.woff2") format("woff2");
+  font-family: "Nunito";
+  src: url("../assets/fonts/Nunito-Bold.woff2") format("woff2");
   font-weight: 700;
   font-style: normal;
   font-display: swap;
@@ -19,36 +19,34 @@
 /*============== GLOBAL STYLES ===============*/
 
 :root {
-  --color-light-bg: #beebf3;
-  --color-dark-bg: #30333d;
+  --color-light: #e5eaf5;
+  --color-dark: #494d5f;
+  --color-blue: #a0d2eb;
+  --color-pink: #d0bdf4;
+  --color-purple: #8458b3;
 
-  --color-light-base: #ffffff;
-  --color-dark-base: #1a1a28;
-  --color-gray-base: #454545;
+  --border-radius: 50%;
+  --border: 1px solid var(--color-dark);
 
-  --color-blue-btn: #51c9dc;
-  --color-light-btn: #f2f8fd;
-  --color-dark-btn: #1e2434;
-
-  --border-radius: 10px;
-  --border: 1px solid var(--color-gray-base);
-
-  --font-family-base: "Kanit", sans-serif;
+  --font-family-base: "Nunito", sans-serif;
 
   --input-height: 54px;
 
-  --container-width: 1300px;
+  --container-width: 360px;
   --container-padding-x: 15px;
 
-  --transition-duration: 0.2s;
+  --header-height: 90px;
+
+  --transition-duration: 0.3s;
 }
 
 body {
   font-family: var(--font-family-base);
   font-weight: 400;
   font-size: 16px;
-  color: var(--color-light-btn);
-  background-color: var(--color-dark-bg);
+  line-height: 1;
+  color: var(--color-light);
+  background-color: var(--color-dark);
 }
 
 h1,
@@ -60,6 +58,14 @@ h6 {
   font-weight: 700;
 }
 
+.body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  row-gap: 50px;
+}
+
 .container {
   max-width: calc(var(--container-width) + var(--container-padding-x) * 2);
   margin-inline: auto;
@@ -68,7 +74,104 @@ h6 {
 
 /*============== HEADER ===============*/
 
+.header {
+  display: flex;
+  align-items: center;
+  min-height: var(--header-height);
+}
+
+.header__title {
+  text-align: center;
+}
+
 /*============== MAIN ===============*/
+
+.lamp {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 330px;
+  min-height: 250px;
+  margin-bottom: 30px;
+}
+
+.lamp__light {
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: var(--border-radius);
+  background-color: var(--color-light);
+}
+
+.controls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 30px;
+}
+
+.controls__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.controls__switch {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  column-gap: 20px;
+  padding-left: 0;
+}
+
+.form-switch .form-check-input {
+  margin: 0;
+}
+
+.controls__switch-input {
+  min-width: 60px;
+  min-height: 30px;
+}
+
+.controls__switch-label {
+  font-size: 32px;
+  width: 60px;
+  min-height: 30px;
+  text-transform: uppercase;
+}
+
+.controls__range {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  column-gap: 10px;
+  width: 100%;
+}
+
+.controls__range-label {
+  margin: 0;
+  text-align: center;
+  font-size: 22px;
+  min-width: 50px;
+}
+
+.controls__bottom {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  column-gap: 20px;
+  width: 100%;
+}
+
+.controls__color-range {
+  height: 35px;
+  width: 35px;
+  border-radius: var(--border-radius);
+}
+
+.form-control-color {
+  padding: 0;
+}
 
 /*============== FOOTER ===============*/
 
